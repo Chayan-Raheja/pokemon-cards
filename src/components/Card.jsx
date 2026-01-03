@@ -29,7 +29,7 @@ import Carddata from './Carddata'
      <div>
       <div>
         
-          <Carddata  Id={props.elem.id} img1={props.elem.sprites.front_default} img2={props.elem.sprites.front_shiny} name={props.elem. name} hp={formattedStats.hp} attack={formattedStats.attack} defense={formattedStats.defense} speed={formattedStats.speed} type1={type[0]} type2={type[1]}  abilities1={abilities[0]} abilities2={abilities[1]} abilities3={abilities[2]} weight={props.elem.weight}  height={props.elem.height} />
+          <Carddata  Id={props.elem.id} img1={props.elem.sprites.other.dream_world.front_default} img2={props.elem.sprites.other.showdown.front_default} name={props.elem. name} hp={formattedStats.hp} attack={formattedStats.attack} defense={formattedStats.defense} speed={formattedStats.speed} type1={type[0]} type2={type[1]}  abilities1={abilities[0]} abilities2={abilities[1]} abilities3={abilities[2]} weight={props.elem.weight}  height={props.elem.height} />
         
       </div>
 

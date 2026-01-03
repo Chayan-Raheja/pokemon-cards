@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const Carddata = (props) => {
 
-    const pokemonTypeStyles = {
+const pokemonTypeStyles = {
   fire: `
     rounded-xl m-5 p-3 flex flex-col justify-center items-center
     bg-gradient-to-br from-yellow-300 via-amber-500 to-orange-700 text-black
@@ -42,6 +42,84 @@ const Carddata = (props) => {
     hover:shadow-[0_0_45px_rgba(180,255,120,1)]
     hover:-translate-y-1 transition-all duration-300
   `,
+
+  poison: `
+    rounded-xl m-5 p-3 flex flex-col justify-center items-center
+    bg-gradient-to-br from-purple-300 via-fuchsia-500 to-violet-700 text-white
+    shadow-[0_0_25px_rgba(180,90,255,0.7)]
+    hover:shadow-[0_0_45px_rgba(210,140,255,1)]
+    hover:-translate-y-1 transition-all duration-300
+  `,
+
+  ground: `
+    rounded-xl m-5 p-3 flex flex-col justify-center items-center
+    bg-gradient-to-br from-yellow-200 via-amber-400 to-yellow-700 text-black
+    shadow-[0_0_25px_rgba(200,160,80,0.7)]
+    hover:shadow-[0_0_45px_rgba(230,190,120,1)]
+    hover:-translate-y-1 transition-all duration-300
+  `,
+
+  electric: `
+    rounded-xl m-5 p-3 flex flex-col justify-center items-center
+    bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-600 text-black
+    shadow-[0_0_30px_rgba(255,255,100,0.9)]
+    hover:shadow-[0_0_50px_rgba(255,255,150,1)]
+    hover:-translate-y-1 transition-all duration-300
+  `,
+
+  fairy: `
+    rounded-xl m-5 p-3 flex flex-col justify-center items-center
+    bg-gradient-to-br from-pink-300 via-rose-400 to-fuchsia-600 text-white
+    shadow-[0_0_25px_rgba(255,150,220,0.8)]
+    hover:shadow-[0_0_45px_rgba(255,190,240,1)]
+    hover:-translate-y-1 transition-all duration-300
+  `,
+   fighting: `
+    rounded-xl m-5 p-3 flex flex-col justify-center items-center
+    bg-gradient-to-br from-red-400 via-orange-600 to-red-800 text-white
+    shadow-[0_0_25px_rgba(255,90,90,0.8)]
+    hover:shadow-[0_0_45px_rgba(255,130,130,1)]
+    hover:-translate-y-1 transition-all duration-300
+  `,
+
+  psychic: `
+    rounded-xl m-5 p-3 flex flex-col justify-center items-center
+    bg-gradient-to-br from-pink-400 via-fuchsia-500 to-purple-700 text-white
+    shadow-[0_0_25px_rgba(255,120,200,0.8)]
+    hover:shadow-[0_0_45px_rgba(255,160,230,1)]
+    hover:-translate-y-1 transition-all duration-300
+  `,
+
+  rock: `
+    rounded-xl m-5 p-3 flex flex-col justify-center items-center
+    bg-gradient-to-br from-stone-300 via-stone-500 to-stone-800 text-black
+    shadow-[0_0_25px_rgba(150,140,120,0.8)]
+    hover:shadow-[0_0_45px_rgba(190,180,160,1)]
+    hover:-translate-y-1 transition-all duration-300
+  `,
+
+  ghost: `
+    rounded-xl m-5 p-3 flex flex-col justify-center items-center
+    bg-gradient-to-br from-indigo-400 via-purple-600 to-indigo-900 text-white
+    shadow-[0_0_25px_rgba(140,120,255,0.8)]
+    hover:shadow-[0_0_45px_rgba(180,160,255,1)]
+    hover:-translate-y-1 transition-all duration-300
+  `,
+  ice: `
+    rounded-xl m-5 p-3 flex flex-col justify-center items-center
+    bg-gradient-to-br from-sky-200 via-cyan-300 to-blue-500 text-black
+    shadow-[0_0_25px_rgba(120,220,255,0.8)]
+    hover:shadow-[0_0_45px_rgba(170,240,255,1)]
+    hover:-translate-y-1 transition-all duration-300
+  `,
+
+  dragon: `
+    rounded-xl m-5 p-3 flex flex-col justify-center items-center
+    bg-gradient-to-br from-indigo-500 via-purple-700 to-red-700 text-white
+    shadow-[0_0_25px_rgba(180,120,255,0.8)]
+    hover:shadow-[0_0_45px_rgba(255,150,200,1)]
+    hover:-translate-y-1 transition-all duration-300
+  `,
 }
 
     const [showAbilities, setShowAbilities] = useState(false)
@@ -62,9 +140,9 @@ const Carddata = (props) => {
             <h1 className=' flex justify-center relative -mt-1 font-bold '>#{String(props.Id).padStart(3, '0')}</h1>
             
             {/* image */}
-            <div className="relative  w-32 h-32 bg-black/30 rounded-full overflow-visible flex items-center justify-center">
-                <img className='absolute w-40 h-auto hover:scale-130' src={props.img1} alt="" />
-            {/* <img src={props.img2} alt="" /> */}
+            <div className="relative group w-38 h-38  bg-black/30 rounded-full overflow-visible items-center justify-center flex">
+                <img className='absolute h-30  group-hover:opacity-0' src={props.img1} alt="" />
+                <img className='absolute h-30 opacity-0 group-hover:opacity-100' src={props.img2} alt="" />
             </div>
             
             {/* name */}
@@ -77,8 +155,8 @@ const Carddata = (props) => {
             
             {/* type */}
             <div className='flex gap-4 my-1 text-white'>
-                <p className='bg-black/20 rounded-2xl py-1 px-3'>{props.type1}</p>
-                {props.type2 && <p className='bg-black/20 rounded-2xl py-1 px-3'>{props.type2}</p>}
+                <p className='bg-black/20 capitalize rounded-2xl py-1 px-3'>{props.type1}</p>
+                {props.type2 && <p className='bg-black/20 capitalize rounded-2xl py-1 px-3'>{props.type2}</p>}
             </div>
 
             <div className="flex items-center bg-black/25 py-5 my-3 px-14 gap-6 rounded-2xl">

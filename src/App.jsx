@@ -6,7 +6,9 @@ const App = () => {
 const [data, setdata] = useState([])
 
   const apidata =async()=>{
-        const apiurl = await axios.get('https://pokeapi.co/api/v2/pokemon')
+        const limit=100;
+        const offset=75;
+        const apiurl = await axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`)
         // { main data store in url }
         const url=apiurl.data.results
 
