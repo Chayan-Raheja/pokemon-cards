@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 const Carddata = (props) => {
 
+  console.log(JSON.stringify(props.description));
+  
 const pokemonTypeStyles = {
   fire: `
     rounded-xl m-5 p-3 flex flex-col justify-center items-center
@@ -158,7 +160,9 @@ const pokemonTypeStyles = {
                 <p className='bg-black/20 capitalize rounded-2xl py-1 px-3'>{props.type1}</p>
                 {props.type2 && <p className='bg-black/20 capitalize rounded-2xl py-1 px-3'>{props.type2}</p>}
             </div>
-
+            <div className="my-2 px-6">
+              <p className="text-black/75 ">{props.description}</p>
+            </div>
             <div className="flex items-center bg-black/25 py-5 my-3 px-14 gap-6 rounded-2xl">
                 <div className="flex flex-col items-center"><h1 className='font-semibold ri-scales-2-line  text-white'> {props.weight} <p className='text-gray-200/75'>Weight</p></h1></div>
 

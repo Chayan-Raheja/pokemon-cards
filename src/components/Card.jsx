@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import Carddata from './Carddata'
+import axios from 'axios'
 
  const  Card = (props) => {
 
@@ -19,17 +20,27 @@ import Carddata from './Carddata'
   
   const abilities=props.elem.abilities.map(a => a.ability.name)
   // console.log(abilities)
-
-
- 
+    const [descrip, setdescrip] = useState('')
+    const id=props.elem.id
+    const desc=async(id)=>{
+  const des= await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
+  // console.log(des.data.flavor_text_entries[0].flavor_text);
+  // return 
+  //cleaning the description text by removing special characters like \n and \f
+  const cleantext=des.data.flavor_text_entries[1].flavor_text.replace(/[\n\f]/g, " ")
+      setdescrip(cleantext)
+}
+  useEffect(() => {
+    desc(id)
+  },[id])
 // console.log(props.elem.sprites)
-{console.log(props.elem)}
+// {console.log(props.elem)}
 
     return (
      <div>
       <div>
         
-          <Carddata  Id={props.elem.id} img1={props.elem.sprites.other.dream_world.front_default} img2={props.elem.sprites.other.showdown.front_default} name={props.elem. name} hp={formattedStats.hp} attack={formattedStats.attack} defense={formattedStats.defense} speed={formattedStats.speed} type1={type[0]} type2={type[1]}  abilities1={abilities[0]} abilities2={abilities[1]} abilities3={abilities[2]} weight={props.elem.weight}  height={props.elem.height} />
+          <Carddata description={descrip} Id={id} img1={props.elem.sprites.other.dream_world.front_default} img2={props.elem.sprites.other.showdown.front_default} name={props.elem. name} hp={formattedStats.hp} attack={formattedStats.attack} defense={formattedStats.defense} speed={formattedStats.speed} type1={type[0]} type2={type[1]}  abilities1={abilities[0]} abilities2={abilities[1]} abilities3={abilities[2]} weight={props.elem.weight}  height={props.elem.height} />
         
       </div>
 

@@ -25,6 +25,8 @@ const [data, setdata] = useState([])
         setdata(api2)
         // api2 contains the array of all pokemon data
       //  console.log(api2);
+
+
         
     }
     
@@ -35,7 +37,7 @@ const [data, setdata] = useState([])
     }, [])
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 bg-black ">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 bg-black ">
       {data.map(function(elem,idx) {
          return <div key={idx}>
           <Card elem={elem} />
