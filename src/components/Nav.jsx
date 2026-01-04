@@ -5,7 +5,7 @@ const Nav = () => {
   const [pkname, setpkname] = useState([]);
 
   return (
-    <div className="w-full py-6 bg-green-200/75 flex items-center justify-around">
+    <div className="w-full py-6 bg-green-200/75 flex items-center gap-3 justify-between ">
       <div className="relative  sm:px-2 h-full flex items-center  ">
         <img
           className="absolute invisible cursor-pointer md:visible w-32 max-w-none"
@@ -19,7 +19,7 @@ const Nav = () => {
         />{" "}
       </div>
 
-      <div className=" sm:px-4  md:pl-10">
+      <div className=" sm:px-4  ">
         <input
           value={pkname}
           onChange={(e) => {
@@ -30,8 +30,8 @@ const Nav = () => {
           placeholder="Search Pokemon by Name"
         />
       </div>
-      <div className=" ">
-       <div className="flex gap-7 items-center justify-center  pt-3.5 ">
+      <div className=" relative">
+       <div className="absolute flex gap-7 items-center justify-center   ">
          <Link
           to="/Home"
           className=" invisible md:visible text-xl font-semibold text-black/80"
@@ -51,7 +51,7 @@ const Nav = () => {
           Contact Us
         </Link>
        </div>
-        <i className="visible md:invisible ri-menu-3-line"></i>
+        <i className="absolute md:invisible relative ri-menu-3-line"></i>
       </div>
     </div>
   );
