@@ -121,14 +121,28 @@ const Carddata = (props) => {
     hover:shadow-[0_0_45px_rgba(255,150,200,1)]
     hover:-translate-y-1 transition-all duration-300
   `,
+    dark: `
+  rounded-xl m-5 p-3 flex flex-col justify-center items-center
+  bg-gradient-to-br from-gray-700 via-zinc-800 to-black text-white
+  shadow-[0_0_25px_rgba(80,80,80,0.9)]
+  hover:shadow-[0_0_50px_rgba(120,120,120,1)]
+  hover:-translate-y-1 transition-all duration-300
+`,
+    steel: `
+  rounded-xl m-5 p-3 flex flex-col justify-center items-center
+  bg-gradient-to-br from-slate-200 via-gray-400 to-zinc-700 text-black
+  shadow-[0_0_25px_rgba(160,160,180,0.8)]
+  hover:shadow-[0_0_45px_rgba(200,200,230,1)]
+  hover:-translate-y-1 transition-all duration-300
+`,
   };
 
   const [showAbilities, setShowAbilities] = useState(false);
+  const [states, setstates] = useState(false);
   const show1 = () => {
     setShowAbilities(!showAbilities);
     states ? setstates(false) : null;
   };
-  const [states, setstates] = useState(false);
   const show2 = () => {
     setstates(!states);
     showAbilities ? setShowAbilities(false) : null;

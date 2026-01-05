@@ -27,8 +27,16 @@ import axios from 'axios'
   // console.log(des.data.flavor_text_entries[0].flavor_text);
   // return 
   //cleaning the description text by removing special characters like \n and \f
-  const cleantext=des.data.flavor_text_entries[1].flavor_text.replace(/[\n\f]/g, " ")
-      setdescrip(cleantext)
+  const englishEntry = des.data.flavor_text_entries.find(
+    (entry) => entry.language.name === "en"
+  );
+
+  if (englishEntry) {
+    const cleanText = englishEntry.flavor_text.replace(/[\n\f]/g, " ");
+    setdescrip(cleanText);
+  }
+      // console.log(des.data);
+      
 }
   useEffect(() => {
     desc(id)

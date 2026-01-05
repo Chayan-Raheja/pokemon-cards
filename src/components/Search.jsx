@@ -5,9 +5,9 @@ import Card from "./Card";
 const Search = ({ pkname }) => {
   const [all, setall] = useState([]);
   const [filter, setfilter] = useState([]);
-  const [final, setfinal] = useState(null);
-
-  // 1️⃣ Load all pokemon once
+  const [final, setfinal] = useState([]);
+  const [not_found, setnot_found] = useState(false);
+  //  Load all pokemon once
   useEffect(() => {
     const loadPokemon = async () => {
       const res = await axios.get(
@@ -18,38 +18,59 @@ const Search = ({ pkname }) => {
     loadPokemon();
   }, []);
 
-  // 2️⃣ Filter while typing
+  //  Filter while typing
   useEffect(() => {
     if (!pkname) {
       setfilter([]);
-      setfinal(null);
+      setfinal([]);
       return;
     }
 
-    const result = all.filter((p) =>
-      p.name.startsWith(pkname.toLowerCase())
-    );
+    const result = all.filter((p) => p.name.startsWith(pkname.toLowerCase()));
 
     setfilter(result);
   }, [pkname, all]);
 
-  // 3️⃣ Load detail of FIRST matched pokemon
+  //  Load detail of FIRST matched pokemon
   useEffect(() => {
-    if (filter.length === 0) return;
+    if (filter.length === 0) {
+      setfinal([]);
+      return;
+    }
 
     const loadDetail = async () => {
-      const res = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${filter[0].name}`
+      const requests = filter.map((p) =>
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${p.name}`)
       );
-      setfinal(res.data);
+
+      const responses = await Promise.all(requests);
+      const data = responses.map((r) => r.data);
+      setfinal(data);
     };
+    // console.log(setfinal);
 
     loadDetail();
   }, [filter]);
 
+  useEffect(() => {
+    if (pkname && filter.length === 0) {
+      // console.log("lawde");
+      setnot_found(true);
+    }
+  }, [final]);
   return (
-    <div className="mt-4">
-      {final && <Card elem={final} />}
+    <div>
+      {not_found ? (
+        <h2 className=" text-center text-2xl font-bold mt-10 ">
+          {pkname} Pokemon Not Found
+        </h2>
+      ) : (
+        <div className="relative z-30 min:h-screen grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 bg-white ">
+          {final.map((pokemon) => (
+            <Card key={pokemon.id} elem={pokemon} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

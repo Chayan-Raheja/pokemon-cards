@@ -26,7 +26,7 @@ const Nav = () => {
           onChange={(e) => {
             setpkname(e.target.value);
           }}
-          className="  border rounded-2xl w-52 px-1 py-2 md:px-5 md:py-3.5 md:w-xl"
+          className="  border rounded-2xl w-52 px-1 py-2 sm:px-5 sm:py-3.5 sm:w-md md:px-5 md:py-3.5 md:w-xl"
           type="text"
           placeholder="Search Pokemon by Name"
         />
