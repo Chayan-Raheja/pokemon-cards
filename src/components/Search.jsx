@@ -37,7 +37,7 @@ const Search = ({ pkname }) => {
       setfinal([]);
       return;
     }
-
+    setnot_found(false);
     const loadDetail = async () => {
       const requests = filter.map((p) =>
         axios.get(`https://pokeapi.co/api/v2/pokemon/${p.name}`)
