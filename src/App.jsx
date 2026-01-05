@@ -2,13 +2,14 @@ import Card from "./components/Card";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Nav from "./components/Nav";
+import Search from "./components/Search";
 
 const App = () => {
   const [data, setdata] = useState([]);
 
   const apidata = async () => {
     const limit = 100;
-    const offset = 75;
+    const offset = 1;
     const apiurl = await axios.get(
       `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`
     );
@@ -37,6 +38,7 @@ const App = () => {
   return (
     <div>
       <Nav />
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 bg-black ">
         {data.map(function (elem, idx) {
           return (

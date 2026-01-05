@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Search from "./Search";
 
 const Nav = () => {
-  const [pkname, setpkname] = useState([]);
-
+  const [pkname, setpkname] = useState('');
   return (
-    <div className="w-full py-6 px-2 bg-green-200/75 flex items-center gap-3 justify-between ">
+    <div>
+    <div className="w-full py-6 px-2 md:px-6 bg-green-200/75 flex items-center gap-3 justify-between ">
       <div className=" relative sm:px-2 h-full flex items-center  ">
         <img
           className="hidden cursor-pointer md:block w-32 max-w-none"
@@ -51,10 +52,14 @@ const Nav = () => {
             Contact Us
           </Link>
         </div>
-        <i className=" md:hidden  ri-menu-3-line"></i>
+        <i className=" md:hidden text-xl font-semibold text-black/80 ri-menu-3-line"></i>
       </div>
+    </div>
+  <Search pkname={pkname} />
+
     </div>
   );
 };
 
 export default Nav;
+

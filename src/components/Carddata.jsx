@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const Carddata = (props) => {
-  console.log(JSON.stringify(props.description));
+  // console.log(JSON.stringify(props.description));
 
   const pokemonTypeStyles = {
     fire: `
