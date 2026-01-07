@@ -65,7 +65,7 @@ const Search = ({ pkname }) => {
           {pkname} Pokemon Not Found
         </h2>
       ) : (
-        <div className="relative z-30 min:h-screen grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 bg-white ">
+        <div className="relative z-30 min:h-screen grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 bg-white ">
           {final.map((pokemon) => (
             <Card key={pokemon.id} elem={pokemon} />
           ))}

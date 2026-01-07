@@ -159,12 +159,12 @@ const Carddata = (props) => {
           <img
             className="absolute h-30  group-hover:opacity-0"
             src={props.img1}
-            alt=""
+            alt={props.name}
           />
           <img
             className="absolute h-30 opacity-0 group-hover:opacity-100"
             src={props.img2}
-            alt=""
+            alt={props.name}
           />
         </div>
 
