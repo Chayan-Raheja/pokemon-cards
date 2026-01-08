@@ -7,7 +7,8 @@ const Search = ({ pkname }) => {
   const [filter, setfilter] = useState([]);
   const [final, setfinal] = useState([]);
   const [not_found, setnot_found] = useState(false);
-  //  Load all pokemon once
+
+  // 1️⃣ Load all pokemon once
   useEffect(() => {
     const loadPokemon = async () => {
       const res = await axios.get(
@@ -18,54 +19,63 @@ const Search = ({ pkname }) => {
     loadPokemon();
   }, []);
 
-  //  Filter while typing
+  // 2️⃣ Filter while typing
   useEffect(() => {
     if (!pkname) {
       setfilter([]);
       setfinal([]);
+      setnot_found(false);
       return;
     }
 
     const result = all.filter((p) => p.name.startsWith(pkname.toLowerCase()));
 
     setfilter(result);
+    setnot_found(result.length === 0);
   }, [pkname, all]);
 
-  //  Load detail of FIRST matched pokemon
+  // 3️⃣ Load pokemon details
   useEffect(() => {
     if (filter.length === 0) {
       setfinal([]);
       return;
     }
-    setnot_found(false);
+
     const loadDetail = async () => {
-      const requests = filter.map((p) =>
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${p.name}`)
-      );
+      const requests = filter
+        .slice(0, 10)
+        .map((p) => axios.get(`https://pokeapi.co/api/v2/pokemon/${p.name}`));
 
       const responses = await Promise.all(requests);
-      const data = responses.map((r) => r.data);
-      setfinal(data);
+      setfinal(responses.map((r) => r.data));
     };
-    // console.log(setfinal);
 
     loadDetail();
   }, [filter]);
 
-  useEffect(() => {
-    if (pkname && filter.length === 0) {
-      // console.log("lawde");
-      setnot_found(true);
-    }
-  }, [final]);
+  // ❌ Input empty → dropdown hide
+  if (!pkname) return null;
+
   return (
-    <div>
-      {not_found ? (
-        <h2 className=" text-center text-2xl font-bold mt-10 ">
-          {pkname} Pokemon Not Found
-        </h2>
-      ) : (
-        <div className="relative z-30 min:h-screen grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 bg-white ">
+    <div
+      className="absolute left-1/2 -translate-x-1/2
+    w-[90%] md:w-175
+    bg-fuchsia-500/50
+    rounded-xl shadow-2xl z-50
+
+    transition-all duration-300 ease-out
+    opacity-100 translate-y-0 scale-100"
+    >
+      {/* ❌ Not Found */}
+      {not_found && (
+        <p className="text-center py-4 font-semibold text-gray-600">
+          {pkname} Pokémon Not Found
+        </p>
+      )}
+
+      {/* ✅ Dropdown results */}
+      {final.length > 0 && (
+        <div className="max-h-119 overflow-y-auto  grid grid-cols-1 sm:grid-cols-2 ">
           {final.map((pokemon) => (
             <Card key={pokemon.id} elem={pokemon} />
           ))}

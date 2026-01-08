@@ -43,6 +43,7 @@ import axios from 'axios'
   },[id])
 // console.log(props.elem.sprites)
 // {console.log(props.elem)}
+console.log(props.elem.sprites.other)
 
     return (
      <div>

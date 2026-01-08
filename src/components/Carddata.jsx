@@ -155,17 +155,17 @@ const Carddata = (props) => {
         </h1>
 
         {/* image */}
-        <div className="relative group w-38 h-38  bg-black/30 rounded-full overflow-visible items-center justify-center flex">
+        <div className="relative  w-38 h-38  bg-black/30 rounded-full overflow-visible items-center justify-center flex">
           <img
-            className="absolute h-30  group-hover:opacity-0"
+            className="absolute h-32 hover:-translate-y-4 hover:scale-150 transition-all duration-300"
             src={props.img1}
             alt={props.name}
           />
-          <img
+          {/* <img
             className="absolute h-30 opacity-0 group-hover:opacity-100"
             src={props.img2}
             alt={props.name}
-          />
+          /> */}
         </div>
 
         {/* name */}
@@ -186,9 +186,9 @@ const Carddata = (props) => {
             </p>
           )}
         </div>
-        <div className="my-2 px-6">
+        {/* <div className="my-2 px-6">
           <p className="text-black/75 ">{props.description}</p>
-        </div>
+        </div> */}
         <div className="flex items-center bg-black/25 py-5 my-3 px-14 gap-6 rounded-2xl">
           <div className="flex flex-col items-center">
             <h1 className="font-semibold ri-scales-2-line  text-white">
